@@ -31,4 +31,16 @@ if (isset($_POST['operacion'])){
     }
   }
 
+  if($_POST['operacion']=='registrar'){
+
+    $datosForm = [
+        "nombremueble"    => $_POST['nombremueble'],
+        "categoria"       => $_POST['categoria'],
+        "precio"          => $_POST['precio'],
+        "marca"           => $_POST['marca'],
+        "color"           => $_POST['color']
+    ];
+    $mueble->registrar($datosForm);
+  }
+
 }

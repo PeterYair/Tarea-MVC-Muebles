@@ -22,6 +22,26 @@ class Mueble extends Conexion{
     }
   }
 
+  public function registrar($datos= []){
+    try{
+
+      $consulta = $this->accesoBD->prepare("CALL spu_mueble_registrar(?, ?, ?, ?, ?)");
+
+      $consulta->execute(
+        array(
+          $datos["nombremueble"],
+          $datos["categoria"],
+          $datos["marca"],
+          $datos["precio"],
+          $datos["color"]
+        )
+        );
+    }
+    catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
+
 
 
 }

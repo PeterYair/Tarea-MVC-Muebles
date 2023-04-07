@@ -106,7 +106,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary btn-sm" id="guardarCursos">Guardar</button>
+        <button type="button" class="btn btn-primary btn-sm" id="guardar">Guardar</button>
       </div>
     </div>
   </div>
@@ -138,8 +138,38 @@
           }
       });
     }
-    
     listar();
+
+    function registrar(){
+      if (confirm("¿Esta seguro de registrar este nuevo mueble")){
+        $.ajax({
+          url:  './controllers/mueble.controller.php',
+          type: 'POST',
+          data: {
+            operacion         : 'registrar',
+            nombremueble      : $("#nombre").val(),
+            categoria         : $("#categoria").val(),
+            marca             : $("#marca").val(),
+            precio            : $("#precio").val(),
+            color             : $("#color").val(),
+          },
+          success: function(result){
+            if (result == ""){
+              //Reiniciar el formulario
+              $("#formulario-RegistroMueble")[0].reset();
+
+              //Actualizar la tabla
+              listar();
+
+               //Cerrar el modal
+              $("#modalRegistrar").modal('hide');
+            }
+          }
+        })
+      }
+    }
+
+    $("#guardar").click(registrar);
 
   });
 </script>
