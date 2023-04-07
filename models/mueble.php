@@ -42,6 +42,16 @@ class Mueble extends Conexion{
     }
   }
 
+  public function eliminar($idmueble = 0){
+    try{
+      $consulta = $this->accesoBD->prepare("CALL spu_muebles_eliminar(?)");
+      $consulta->execute(array($idmueble));
+    }
+    catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
+
 
 
 }

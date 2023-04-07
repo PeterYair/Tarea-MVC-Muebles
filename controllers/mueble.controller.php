@@ -43,4 +43,9 @@ if (isset($_POST['operacion'])){
     $mueble->registrar($datosForm);
   }
 
+  if ($_POST['operacion'] == 'eliminar'){
+    $mueble->eliminar($_POST['idmueble']);
+  }
+
+
 }

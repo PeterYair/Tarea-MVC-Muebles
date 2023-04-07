@@ -168,8 +168,26 @@
         })
       }
     }
-
     $("#guardar").click(registrar);
+
+    $("#tabla-mueble tbody").on("click", ".eliminar", function (){
+     const idmuebleEliminar = $(this).data("idmueble");
+      if (confirm("¿Está seguro de proceder?")){
+          $.ajax({
+            url: './controllers/mueble.controller.php',
+            type: 'POST',
+            data: {
+              operacion :   'eliminar',
+              idmueble   :   idmuebleEliminar
+            },
+            success: function (result){
+              if (result == ""){
+                listar();
+              }
+            }
+        });
+      }
+    });
 
   });
 </script>
