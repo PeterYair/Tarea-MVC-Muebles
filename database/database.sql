@@ -19,18 +19,6 @@ INSERT mueble(nombremueble, categoria, precio, marca, color)
 		('Juego de Comedor 6 Sillas Dartagnan', 'M', 899.90, 'J', 'Negro'),
 		('Panel de TV The Wall 2A 60" Miel Plomo', 'S',  519.90, 'C', 'Café');
 
-SELECT * FROM mueble;
-
--- S : sala 
--- O : Oficina y Escritorio
--- M : Muebles de comedor
-
-
--- M : Mica
--- H : Homy
--- C : Coros
--- J : JUST HOME COLLECTION
-
 DELIMITER $$
 CREATE PROCEDURE spu_mueble_listar()
 BEGIN
@@ -51,8 +39,6 @@ BEGIN
 	ORDER BY idmueble DESC;
 END $$
 
-CALL spu_mueble_listar;
-
 DELIMITER $$
 CREATE PROCEDURE spu_mueble_registrar
 (
@@ -67,8 +53,6 @@ BEGIN
 	VALUES (_nombremueble, _categoria, _marca, _precio, _color);
 END $$
 
-CALL spu_mueble_registrar('dawdwa','M', 'J', 1234, 'rojo');
-
 DELIMITER $$
 CREATE PROCEDURE spu_muebles_eliminar(IN _idmueble INT)
 BEGIN	
@@ -76,4 +60,3 @@ BEGIN
 	SET estado = '0'
 	WHERE idmueble = _idmueble;
 END $$		
-CALL spu_muebles_eliminar(9);
